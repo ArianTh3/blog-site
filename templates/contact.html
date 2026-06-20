@@ -64,7 +64,8 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="form-wrapper" data-aos="fade-up" data-aos-delay="400">
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <form action="{% url "contact_view" %}" method="post" role="form">
+                {% csrf_token %}
                 <div class="row">
                   <div class="col-md-6 form-group">
                     <div class="input-group">
