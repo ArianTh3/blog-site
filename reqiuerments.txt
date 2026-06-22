@@ -3,3 +3,4 @@ Django==6.0.6
 django-phonenumber-field==8.4.0
 phonenumberslite==9.0.32
 sqlparse==0.5.5
+Pillow==12.2.0
