@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.templatetags.static import static
 from django.urls import reverse
 
   
@@ -10,7 +11,7 @@ class Category(models.Model):
         return self.name
 
 class Post(models.Model):
-    image = models.ImageField(upload_to='blog/', default='assets/img/blog/blog-hero-2.webp')
+    image = models.ImageField(upload_to='blog/', blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=255)
     content = models.TextField()
@@ -21,6 +22,12 @@ class Post(models.Model):
     published_date = models.DateTimeField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.url
+        return static("assets/img/blog/blog-hero-2.webp")
     
     class Meta:
         ordering = ["-created_date"]

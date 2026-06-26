@@ -3589,3 +3589,12 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   font-size: 14px;
 }
+
+
+#pagination-2 ul,
+#pagination-2 li {
+  list-style: none !important;
+}
+#pagination-2 li::marker {
+  content: "" !important;
+}
