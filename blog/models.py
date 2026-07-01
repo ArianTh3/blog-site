@@ -10,6 +10,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Post(models.Model):
     image = models.ImageField(upload_to='blog/', blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -22,6 +23,7 @@ class Post(models.Model):
     published_date = models.DateTimeField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+    
 
     @property
     def image_url(self):
@@ -35,6 +37,37 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
+class ContentBlock(models.Model):
+    BLOCK_TYPES = [
+        ('heading', 'Heading'),
+        ('paragraph', 'Paragraph'),
+        ('image', 'Image'),
+        ('quote', 'Quote'),
+        ('list', 'List'),
+        ('code', 'Code Block'),
+        ('card', 'Card'),
+        ('table', 'Table'),
+    ]
+
+    post = models.ForeignKey(Post, related_name='blocks', on_delete=models.CASCADE)
+    order = models.PositiveIntegerField(default=0)
+    block_type = models.CharField(max_length=20, choices=BLOCK_TYPES)
+
+    content = models.TextField(blank=True)
+    heading_level = models.PositiveSmallIntegerField(default=2)
+    image = models.ImageField(upload_to='blog/blocks/', blank=True, null=True)
+    image_caption = models.CharField(max_length=255, blank=True)
+    code_language = models.CharField(max_length=30, blank=True)
+    data = models.JSONField(blank=True, null=True)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.post.title} - {self.block_type} ({self.order})"
+
+    
+
 class Comment(models.Model):
     posts = models.ForeignKey(Post, on_delete=models.CASCADE) 
     name = models.CharField(max_length=255)

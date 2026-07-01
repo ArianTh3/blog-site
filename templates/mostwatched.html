@@ -1,0 +1,67 @@
+{% load static %}
+{% load humanize %}
+
+<!-- Featured Posts Section -->
+<section id="featured-posts" class="featured-posts section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Most Watched Posts</h2>
+    <div><span>Check Our</span> <span class="description-title">Most Watched Posts</span></div>
+  </div><!-- End Section Title -->
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="blog-posts-slider swiper init-swiper">
+      <script type="application/json" class="swiper-config">
+        {
+          "loop": true,
+          "speed": 800,
+          "autoplay": {
+            "delay": 5000
+          },
+          "slidesPerView": 3,
+          "spaceBetween": 30,
+          "breakpoints": {
+            "320": {
+              "slidesPerView": 1,
+              "spaceBetween": 20
+            },
+            "768": {
+              "slidesPerView": 2,
+              "spaceBetween": 20
+            },
+            "1200": {
+              "slidesPerView": 3,
+              "spaceBetween": 30
+            }
+          }
+        }
+      </script>
+
+      <div class="swiper-wrapper">
+        {% for post in posts %}
+        <div class="swiper-slide">
+          <div class="blog-post-item">
+            
+            <img src="{{post.image_url}}" alt="Blog Image">
+            <div class="blog-post-content">
+              <div class="post-meta">
+                <span><i class="bi bi-person"></i> {{post.author.username}}</span>
+                <span><i class="bi bi-clock"></i> {{post.published_date|naturaltime}}</span>
+                <span><i class="bi bi-chat-dots"></i> 6 Comments</span>
+              </div>
+              <h2><a href="{% url "blog:postdetail" pk=post.id %}">{{post.title}}</a></h2>
+              <p>{{post.content|truncatewords:20}}</p>
+              <a href="{% url "blog:postdetail" pk=post.id %}" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div><!-- End slide item -->
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </div>
+
+</section><!-- /Featured Posts Section -->
