@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_summernote',
     "main",
     'blog',
+    'accounts'
 ]
 
 
@@ -160,3 +161,5 @@ STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
     BASE_DIR / "statics",
 ]
+
+AUTH_USER_MODEL = "accounts.User"

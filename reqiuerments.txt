@@ -3,4 +3,12 @@ Django==6.0.6
 django-phonenumber-field==8.4.0
 phonenumberslite==9.0.32
 sqlparse==0.5.5
-Pillow==12.2.0
+Pillow==12.2.0asgiref==3.11.1
+bleach==6.4.0
+Django==6.0.6
+django-phonenumber-field==8.4.0
+django-summernote==0.8.20.0
+phonenumberslite==9.0.32
+pillow==12.2.0
+sqlparse==0.5.5
+webencodings==0.5.1

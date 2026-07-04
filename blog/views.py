@@ -13,7 +13,7 @@ class BlogListView(ListView):
     context_object_name = "posts"
     paginate_by = 6
     def get_queryset(self):
-        posts = Post.objects.filter(published_date__lte=timezone.now(), status=1)
+        posts = Post.objects.filter(published_date__lte=timezone.now(), status=1).select_related('author__profile')
         return posts
 
 
@@ -29,7 +29,7 @@ class BlogDetailView(FormMixin, DetailView):
         return Post.objects.filter(
             published_date__lte=timezone.now(),
             status=1,
-        ).prefetch_related("blocks")
+        ).select_related('author__profile').prefetch_related("blocks")
 
     def get_object(self, queryset=None):
         queryset = queryset or self.get_queryset()
