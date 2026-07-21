@@ -42,7 +42,7 @@
     <div class="container-fluid container-xl position-relative">
 
       <div class="top-row d-flex align-items-center justify-content-between">
-        <a href="{% url "main:indexview" %}" class="logo d-flex align-items-end">
+        <a href="{% url "main:index_view" %}" class="logo d-flex align-items-end">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <!-- <img src="{% static 'assets/img/logo.webp' %}" alt=""> -->
           <h1 class="sitename">Blogy</h1><span>.</span>
@@ -65,10 +65,13 @@
       <div class="container d-flex justify-content-center position-relative">
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="{% url 'main:indexview' %}">Home</a></li>
+            <li><a href="{% url 'main:index_view' %}">Home</a></li>
             <li><a href="{% url 'main:about_view' %}" class="">About</a></li>
             <li><a href="{% url "blog:postlist" %}">Blog</a></li>
             <li><a href="{% url 'main:contact_view' %}">Contact</a></li>
+            <li><a href="{% url 'accounts:register' %}">Signup</a></li>
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
+
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -85,7 +88,7 @@
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
-          <a href="{% url 'main:indexview' %}" class="logo d-flex align-items-center">
+            <a href="{% url 'main:index_view' %}" class="logo d-flex align-items-center">
             <span class="sitename">Blogy</span>
           </a>
           <div class="footer-contact pt-3">

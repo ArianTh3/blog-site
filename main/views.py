@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView , UpdateView
 from django.urls import reverse_lazy
 from .forms import ContactForm
 from .models import Contact
+from .urls import *
 
 # Create your views here.
 def index_view(request):
@@ -16,8 +17,8 @@ def about_view(request):
 
 class ContactView(CreateView):
     model = Contact
-    fields = ["name", "message", "email"]
-    success_url = reverse_lazy("index_view")
+    form_class = ContactForm
+    success_url = reverse_lazy("main:index_view")
     template_name = "contact.html"
     def form_valid(self, form):
         form.instance.user = self.request.user
